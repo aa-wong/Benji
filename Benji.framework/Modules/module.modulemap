@@ -1,0 +1,11 @@
+framework module Benji {
+  umbrella header "Benji.h"
+
+  export *
+  module * { export * }
+}
+
+module Benji.Swift {
+    header "Benji-Swift.h"
+    requires objc
+}
