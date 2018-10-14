@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		935F82412172CC6500640FDF /* Benji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F823F2172CC6500640FDF /* Benji.swift */; };
+		935F82422172CC6500640FDF /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F82402172CC6500640FDF /* Parser.swift */; };
+		935F82462172E6B300640FDF /* SessionCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F82452172E6B300640FDF /* SessionCaller.swift */; };
 		93FFFE24214EDB2E002769D8 /* Benji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93FFFE1A214EDB2E002769D8 /* Benji.framework */; };
 		93FFFE29214EDB2E002769D8 /* BenjiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FFFE28214EDB2E002769D8 /* BenjiTests.swift */; };
 		93FFFE2B214EDB2E002769D8 /* Benji.h in Headers */ = {isa = PBXBuildFile; fileRef = 93FFFE1D214EDB2E002769D8 /* Benji.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +26,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		935F823F2172CC6500640FDF /* Benji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Benji.swift; sourceTree = "<group>"; };
+		935F82402172CC6500640FDF /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		935F82452172E6B300640FDF /* SessionCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCaller.swift; sourceTree = "<group>"; };
 		93FFFE1A214EDB2E002769D8 /* Benji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Benji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93FFFE1D214EDB2E002769D8 /* Benji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Benji.h; sourceTree = "<group>"; };
 		93FFFE1E214EDB2E002769D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +78,9 @@
 			isa = PBXGroup;
 			children = (
 				93FFFE1D214EDB2E002769D8 /* Benji.h */,
+				935F823F2172CC6500640FDF /* Benji.swift */,
+				935F82402172CC6500640FDF /* Parser.swift */,
+				935F82452172E6B300640FDF /* SessionCaller.swift */,
 				93FFFE1E214EDB2E002769D8 /* Info.plist */,
 			);
 			path = Benji;
@@ -148,9 +157,11 @@
 				TargetAttributes = {
 					93FFFE19214EDB2E002769D8 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 					93FFFE22214EDB2E002769D8 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -194,6 +205,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				935F82462172E6B300640FDF /* SessionCaller.swift in Sources */,
+				935F82422172CC6500640FDF /* Parser.swift in Sources */,
+				935F82412172CC6500640FDF /* Benji.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +353,7 @@
 		93FFFE2F214EDB2E002769D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -353,10 +368,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kinactiv.Benji;
+				PRODUCT_BUNDLE_IDENTIFIER = "aa-wong.Benji";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -364,6 +380,7 @@
 		93FFFE30214EDB2E002769D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -378,10 +395,10 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kinactiv.Benji;
+				PRODUCT_BUNDLE_IDENTIFIER = "aa-wong.Benji";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -389,6 +406,7 @@
 		93FFFE32214EDB2E002769D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z2HJBZK537;
 				INFOPLIST_FILE = BenjiTests/Info.plist;
@@ -399,7 +417,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = kinactiv.BenjiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -407,6 +425,7 @@
 		93FFFE33214EDB2E002769D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z2HJBZK537;
 				INFOPLIST_FILE = BenjiTests/Info.plist;
@@ -417,7 +436,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = kinactiv.BenjiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -3,7 +3,7 @@
 //  Benji
 //
 //  Created by Aaron Wong-Ellis on 2018-09-16.
-//  Copyright © 2018 kinactiv. All rights reserved.
+//  Copyright © 2018 aa-wong. All rights reserved.
 //
 
 import Foundation
@@ -15,7 +15,7 @@ import MobileCoreServices
     @objc optional func benjiLogRequest(_ log: [String : Any])
 }
 
-private enum BenjiRequestType {
+public enum BenjiRequestType {
     case GET
     case POST
     case PUT
@@ -37,142 +37,208 @@ private enum BenjiRequestType {
 
 public class Benji: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate {
     
-    public static let fetch : Benji = Benji()
+    private struct Static {
+        static var instance: Benji?
+    }
+    
+    public class var shared: Benji {
+        if Static.instance == nil {
+            Static.instance = Benji()
+        }
+        return Static.instance!
+    }
+    
+    public static func destroy() {
+        Benji.Static.instance = nil
+    }
     
     private var uploadTask = URLSessionUploadTask()
     public var delegate : BenjiFetchDelegate?
     public var baseUrl : String?
+    public var baseHeaders : [String : String]?
     
     // MARK: - REQUESTERS
     // MARK: GET
-    open func GET(_ uri:String, headers: [String : String]?, completion:@escaping (_ error: Error?, _ response:Any?) -> Void) {
-        let type : BenjiRequestType = .GET
-        let request : URLRequest = self.createRequestObject(method: type.requestString(),
-                                                            uri: uri,
-                                                            headers:headers)
-        return self.urlSessionCaller(uri,
-                                     postType: type.requestString(),
-                                     request: request,
-                                     completion: completion)
+    open func GET(_ url:String,
+                  headers: [String : String]?,
+                  completion:@escaping (_ error: Error?, _ response:Any?) -> Void) {
+        
+        return self.FETCH(.GET,
+                          url: url,
+                          headers: headers,
+                          parameters: nil,
+                          completion: completion)
     }
     
     // MARK: POST
-    open func POST(_ uri:String, headers: [String : String]?, parameters:[String : Any], completion:@escaping (_ error: Error?, _ response:Any?) -> Void) {
-        let type : BenjiRequestType = .POST
-        var request : URLRequest = self.createRequestObject(method: type.requestString(),
-                                                            uri: uri,
-                                                            headers:headers)
+    open func POST(_ url:String,
+                   headers: [String : String]?,
+                   parameters:[String : Any],
+                   completion: @escaping (_ error: Error?, _ response:Any?) -> Void) {
         
-        Parser.dataFromJSON(data: parameters) { (error, data) in
-            if (error != nil) {
-                return completion(error, nil)
-            }
-            request.httpBody = data!
-            return self.urlSessionCaller(uri,
-                                         postType: type.requestString(),
-                                         request: request,
-                                         completion: completion)
-        }
+        return self.FETCH(.POST,
+                          url: url,
+                          headers: headers,
+                          parameters: parameters,
+                          completion: completion)
     }
     
     // MARK: PUT
-    open func PUT(_ uri:String, headers: [String : String]?, parameters:[String : Any], completion:@escaping (_ error: Error?, _ response:Any?) -> Void) {
-        let type : BenjiRequestType = .PUT
-        var request : URLRequest = self.createRequestObject(method: type.requestString(),
-                                                            uri: uri,
-                                                            headers: headers)
+    open func PUT(_ url:String,
+                  headers: [String : String]?,
+                  parameters:[String : Any],
+                  completion: @escaping (_ error: Error?, _ response:Any?) -> Void) {
         
-        Parser.dataFromJSON(data: parameters) { (error, data) in
-            if (error != nil) {
-                return completion(error, nil)
+        return self.FETCH(.PUT,
+                          url: url,
+                          headers: headers,
+                          parameters: parameters,
+                          completion: completion)
+    }
+    
+    // MARK: DELETE
+    open func DELETE(_ url:String,
+                     headers: [String : String]?,
+                     completion: @escaping (_ error: Error?, _ response:Any?) -> Void) {
+        
+        return self.FETCH(.DELETE,
+                          url: url,
+                          headers: headers,
+                          parameters: nil,
+                          completion: completion)
+    }
+    
+    // MARK: REQUESTER
+    open func FETCH(_ type: BenjiRequestType,
+                    url: String,
+                    headers: [String : String]?,
+                    parameters:[String : Any]?,
+                    completion: @escaping (_ error: Error?, _ response:Any?) -> Void) {
+        
+        let requestUrl = self.baseUrl != nil ? self.baseUrl! + url : url
+        
+        var request : URLRequest = self.createRequestObject(method: type.requestString(),
+                                                            url: requestUrl,
+                                                            headers: headers)
+        if let parameters = parameters {
+            Parser.dataFromJSON(data: parameters) { (error, data) in
+                if (error != nil) {
+                    return completion(error, nil)
+                }
+                request.httpBody = data!
+                return self.urlSessionCaller(url,
+                                             request: request,
+                                             completion: completion)
             }
-            request.httpBody = data!
-            return self.urlSessionCaller(uri,
-                                         postType: type.requestString(),
+        } else {
+            return self.urlSessionCaller(url,
                                          request: request,
                                          completion: completion)
         }
     }
     
-    // MARK: DELETE
-    open func DELETE(_ uri:String, headers: [String : String]?, completion:@escaping (_ error: Error?, _ response:Any?) -> Void) {
-        let type : BenjiRequestType = .DELETE
-        let request : URLRequest = self.createRequestObject(method: type.requestString(),
-                                                            uri: uri,
-                                                            headers: headers)
-        return self.urlSessionCaller(uri,
-                                     postType: type.requestString(),
-                                     request: request,
-                                     completion: completion)
-    }
-    
-    private func createRequestObject(method: String, uri: String, headers: [String : String]?) -> URLRequest {
-        let url = self.baseUrl != nil ? self.baseUrl! + uri : uri
-        let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        let uriRequest = URL(string: encodedUrl!)
-        var request : URLRequest = URLRequest(url: uriRequest!)
-        request.httpMethod = method
-        
-        if let headers = headers {
-            for (key, value) in headers {
-                request.addValue(value,
-                                 forHTTPHeaderField: key)
-            }
-        }
-        
-        self.passLogToDelegate(method: method, url: url, headers: headers)
-        
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        return request
-    }
-    
     // MARK: FILE UPLOADER POST
-    open func UPLOAD(_ uri:String, headers: [String : String]?, parameters:[String : Any]?, fileName:String, filePath: String, completion:@escaping (_ error: Error?, _ response: Any?) -> Void) {
+    open func UPLOAD(_ uri:String,
+                     type: BenjiRequestType,
+                     headers: [String : String]?,
+                     parameters:[String : Any]?,
+                     fileName:String,
+                     filePath: String,
+                     completion: @escaping (_ error: Error?, _ response: Any?) -> Void) {
         
         let url = self.baseUrl != nil ? self.baseUrl! + uri : uri
         
         let request = self.createDataUploadRequestWithParams(url,
-                                                             headers:headers,
-                                                             params: parameters)
-        let data = self.createMultipartBodyWithParameters(parameters,
+                                                             type: type,
+                                                             headers: headers)
+        
+        if let data = self.createMultipartBodyWithParameters(parameters,
                                                           filePathKey: fileName,
-                                                          paths: [filePath])
-        self.uploadSessionCaller(url,
-                                 request: request,
-                                 data: data) { (response, success) -> Void in
-            return completion(response, success)
+                                                          paths: [filePath]) {
+            self.uploadSessionCaller(url,
+                                     request: request,
+                                     data: data) { (response, success) -> Void in
+                                        return completion(response, success)
+            }
+        } else {
+            let error : Error = NSError(domain: "Error occured while preparing file for upload", code: 409, userInfo: nil)
+            return completion(error, nil)
         }
     }
     
     // MARK: - IMAGE DOWNLOADERS
-    open static func asyncDownloadImageWithURL(_ urlString:String, completion:@escaping (_ error: Error?, _ image:UIImage?) -> Void) {
-        let url = URL(string: urlString)
-        let session = Foundation.URLSession.shared
-        let task = session.dataTask(with: url!,
-                                    completionHandler: { (data, response, error) -> Void in
-            guard data != nil else {
-                return completion(error, nil)
-            }
-            
-            do {
-                let image = UIImage(data: data!)
-                return completion(nil, image)
-            }
-        })
-        return task.resume()
-    }
     
-    open static func syncDownloadImageWithURL(_ urlString:String) -> UIImage {
+    // MARK: SYNCHRONOUS
+    public static func syncImageDownloadWithURL(_ urlString:String) -> UIImage {
         let url = URL(string: urlString)
         let imageData = try? Data(contentsOf: url!)
         let image = UIImage(data: imageData!)
         return image!
     }
+
+    // MARK: ASYNCHRONOUS
+    public static func asyncImageDownloadWithURL(_ urlString:String,
+                                                 completion: @escaping (_ error: Error?, _ image:UIImage?) -> Void) {
+        let url = URL(string: urlString)
+        let session = Foundation.URLSession.shared
+        let task = session.dataTask(with: url!,
+                                    completionHandler: { (data, response, error) -> Void in
+                                        guard data != nil else {
+                                            return completion(error, nil)
+                                        }
+                                        
+                                        do {
+                                            let image = UIImage(data: data!)
+                                            return completion(nil, image)
+                                        }
+        })
+        return task.resume()
+    }
     
     // MARK: - SESSION CALLERS
+    
+    // MARK: URL Request Object
+    private func createRequestObject(method: String,
+                                     url: String,
+                                     headers: [String : String]?) -> URLRequest {
+        
+        let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let uriRequest = URL(string: encodedUrl!)
+        var request : URLRequest = URLRequest(url: uriRequest!)
+        request.httpMethod = method
+        return self.processHeaders(request: request, headers: headers)
+    }
+    
+    // MARK: Headers
+    private func processHeaders(request: URLRequest, headers: [String : String]?) -> URLRequest {
+        var pre : [String : String]?
+        
+        if var baseHeaders = self.baseHeaders {
+            if let headers = headers {
+                headers.forEach { (key, value) in baseHeaders[key] = value }
+            } else {
+                pre = baseHeaders
+            }
+        } else {
+            pre = headers
+        }
+        
+        var urlRequest = request
+        
+        if let post = pre {
+            for (key, value) in post {
+                urlRequest.addValue(value, forHTTPHeaderField: key)
+            }
+        }
+        self.passLogToDelegate(method: request.httpMethod!, url: request.url!.absoluteString, headers: headers)
+        
+        return urlRequest
+    }
+    
     // MARK: URL Session Caller
-    open func urlSessionCaller(_ url:String, postType:String, request: URLRequest, completion:@escaping (_ error: Error?, _ response:Any?) -> Void) {
+    private func urlSessionCaller(_ url:String,
+                               request: URLRequest,
+                               completion: @escaping (_ error: Error?, _ response:Any?) -> Void) {
         
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
@@ -182,7 +248,7 @@ public class Benji: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSes
             }
             
             Parser.JSONFromData(data: data!,
-                                         completion: { (error, json) in
+                                completion: { (error, json) in
                 if (error != nil) {
                     return completion(error, nil)
                 }
@@ -194,7 +260,10 @@ public class Benji: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSes
     }
     
     // MARK: Upload Session Caller
-    open func uploadSessionCaller(_ url: String, request: URLRequest, data:Data, completion:@escaping (_ error:Error?, _ response:Any?) -> Void) {
+    private func uploadSessionCaller(_ url: String,
+                                  request: URLRequest,
+                                  data:Data,
+                                  completion: @escaping (_ error:Error?, _ response:Any?) -> Void) {
         
         let config = URLSessionConfiguration.default
         config.httpMaximumConnectionsPerHost = 1
@@ -222,29 +291,22 @@ public class Benji: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSes
         return uploadTask.resume()
     }
     
-    // MARK: MULTIPART/FORM-DATA Delegates
+    // MARK: MULTIPART/FORM-DATA
     // CREATE UPLOAD REQUEST
-    open func createDataUploadRequestWithParams(_ url:String, headers: [String : String]?, params:[String:Any]?) -> URLRequest {
+    private func createDataUploadRequestWithParams(_ url:String,
+                                                type: BenjiRequestType,
+                                                headers: [String : String]?) -> URLRequest {
         
         let boundary = generateBoundaryString()
         let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let uriRequest = URL(string: encodedUrl)
-        let method : String = "POST"
+        let method : String = type.requestString()
         
         var request = URLRequest(url: uriRequest!)
         request.httpMethod = method
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         request.addValue("Keep-Alive", forHTTPHeaderField: "Connection")
-        
-        if let headers = headers {
-            for (key, value) in headers {
-                request.addValue(value, forHTTPHeaderField: key)
-            }
-        }
-        
-        self.passLogToDelegate(method: method, url: url, headers: headers)
-        
-        return request
+        return self.processHeaders(request: request, headers: headers)
     }
     
     // Create body of the multipart/form-data request
@@ -255,7 +317,9 @@ public class Benji: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSes
     // :param: boundary     The multipart/form-data boundary
     //
     // :returns:            The NSData of the body of the request
-    open func createMultipartBodyWithParameters(_ parameters: [String: Any]?, filePathKey: String?, paths: [String]?) -> Data {
+    private func createMultipartBodyWithParameters(_ parameters: [String: Any]?,
+                                                filePathKey: String?,
+                                                paths: [String]?) -> Data? {
         let body = NSMutableData()
         
         let boundary = generateBoundaryString()
@@ -272,14 +336,20 @@ public class Benji: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSes
             for path in paths! {
                 let url = URL(fileURLWithPath: path)
                 let filename = url.lastPathComponent
-                let data = try! Data(contentsOf: url)
-                let mimetype = mimeTypeForPath(path)
                 
-                body.appendString("--\(boundary)\r\n")
-                body.appendString("Content-Disposition: form-data; name=\"\(filePathKey!)\"; filename=\"\(filename)\"\r\n")
-                body.appendString("Content-Type: \(mimetype)\r\n\r\n")
-                body.append(data)
-                body.appendString("\r\n")
+                do {
+                    let data = try Data(contentsOf: url)
+                    let mimetype = mimeTypeForPath(path)
+                    
+                    body.appendString("--\(boundary)\r\n")
+                    body.appendString("Content-Disposition: form-data; name=\"\(filePathKey!)\"; filename=\"\(filename)\"\r\n")
+                    body.appendString("Content-Type: \(mimetype)\r\n\r\n")
+                    body.append(data)
+                    body.appendString("\r\n")
+                } catch let error {
+                    self.delegate?.benjiDidGetErrorForFileUpload?(error)
+                    return nil
+                }
             }
         }
         
@@ -306,30 +376,34 @@ public class Benji: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSes
             let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
             return mimetype as String
         }
-        return "application/octet-stream";
+        return "application/octet-stream"
     }
     
     // MARK: Upload Session Delegates
-    open func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
+    private func urlSession(_ session: URLSession,
+                         task: URLSessionTask,
+                         didSendBodyData bytesSent: Int64,
+                         totalBytesSent: Int64,
+                         totalBytesExpectedToSend: Int64) {
+        
         let uploadProgress : Float = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
-        
         let uploadPercentage : Int =  Int(uploadProgress * 100)
+        self.delegate?.benjiDidGetProgressForFileUpload?(uploadProgress, percentageUploaded: uploadPercentage)
+    }
+    
+    private func urlSession(_ session: URLSession,
+                         task: URLSessionTask,
+                         didCompleteWithError error: Error?) {
         
-        if let delegate = self.delegate,
-            let didGetProgressForFileUpload = delegate.benjiDidGetProgressForFileUpload {
-            return didGetProgressForFileUpload(uploadProgress, uploadPercentage)
+        if let error = error {
+            self.delegate?.benjiDidGetErrorForFileUpload?(error)
         }
     }
     
-    open func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        if let error = error,
-            let delegate = self.delegate,
-            let didGetErrorForFileUpload = delegate.benjiDidGetErrorForFileUpload {
-            return didGetErrorForFileUpload(error)
-        }
-    }
-    
-    private func passLogToDelegate(method: String, url: String, headers: [String : String]?) {
+    private func passLogToDelegate(method: String,
+                                   url: String,
+                                   headers: [String : String]?) {
+        
         if let delegate = self.delegate,
             let logger = delegate.benjiLogRequest {
             var details : [String : Any] = [:]

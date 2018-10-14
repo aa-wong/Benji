@@ -3,7 +3,7 @@
 //  Benji
 //
 //  Created by Aaron Wong-Ellis on 2018-09-16.
-//  Copyright © 2018 kinactiv. All rights reserved.
+//  Copyright © 2018 aa-wong. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
