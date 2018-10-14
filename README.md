@@ -1,8 +1,6 @@
 ![Benji - Developer's Best Friend in Fetch Requests](https://raw.githubusercontent.com/aa-wong/Benji/master/Benji-logo.png)
 
-# Benji - Developer's Best Friend in Fetch Requests
-
-Benji is an HTTP networking library written in Swift for simple HTTP API requests.
+Benji is a lightweight HTTP networking library written in Swift for simple HTTP API requests using JSON and uploading/downloading files.
 
 
 ## Philosophy
