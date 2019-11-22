@@ -6,91 +6,120 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		52F996B62387556600630110 /* Benji-Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 52F996B72387556600630110 /* Build configuration list for PBXAggregateTarget "Benji-Universal" */;
+			buildPhases = (
+				52F996BA2387557B00630110 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Benji-Universal";
+			productName = "Benji-Universal";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		935F82412172CC6500640FDF /* Benji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F823F2172CC6500640FDF /* Benji.swift */; };
-		935F82422172CC6500640FDF /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F82402172CC6500640FDF /* Parser.swift */; };
-		935F82462172E6B300640FDF /* SessionCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F82452172E6B300640FDF /* SessionCaller.swift */; };
-		93FFFE24214EDB2E002769D8 /* Benji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93FFFE1A214EDB2E002769D8 /* Benji.framework */; };
-		93FFFE29214EDB2E002769D8 /* BenjiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FFFE28214EDB2E002769D8 /* BenjiTests.swift */; };
-		93FFFE2B214EDB2E002769D8 /* Benji.h in Headers */ = {isa = PBXBuildFile; fileRef = 93FFFE1D214EDB2E002769D8 /* Benji.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		52F9964F2387437100630110 /* Benji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F996452387437100630110 /* Benji.framework */; };
+		52F996542387437100630110 /* BenjiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F996532387437100630110 /* BenjiTests.swift */; };
+		52F996562387437100630110 /* Benji.h in Headers */ = {isa = PBXBuildFile; fileRef = 52F996482387437100630110 /* Benji.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		52F99662238744F100630110 /* Benji.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 52F99661238744F100630110 /* Benji.podspec */; };
+		52F996642387464B00630110 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 52F996632387464B00630110 /* LICENSE */; };
+		52F996662387472B00630110 /* Benji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F996652387472B00630110 /* Benji.swift */; };
+		52F996682387475100630110 /* BenjiRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F996672387475100630110 /* BenjiRequestFactory.swift */; };
+		52F9966A2387478400630110 /* BenjiUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F996692387478400630110 /* BenjiUploadManager.swift */; };
+		52F9966C238747A100630110 /* BenjiSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9966B238747A100630110 /* BenjiSession.swift */; };
+		52F9966E238747B900630110 /* BenjiParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9966D238747B900630110 /* BenjiParser.swift */; };
+		52F99670238747D900630110 /* BenjiDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9966F238747D900630110 /* BenjiDownloadManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		93FFFE25214EDB2E002769D8 /* PBXContainerItemProxy */ = {
+		52F996502387437100630110 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 93FFFE11214EDB2E002769D8 /* Project object */;
+			containerPortal = 52F9963C2387437100630110 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 93FFFE19214EDB2E002769D8;
+			remoteGlobalIDString = 52F996442387437100630110;
 			remoteInfo = Benji;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		935F823F2172CC6500640FDF /* Benji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Benji.swift; sourceTree = "<group>"; };
-		935F82402172CC6500640FDF /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
-		935F82452172E6B300640FDF /* SessionCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCaller.swift; sourceTree = "<group>"; };
-		93FFFE1A214EDB2E002769D8 /* Benji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Benji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		93FFFE1D214EDB2E002769D8 /* Benji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Benji.h; sourceTree = "<group>"; };
-		93FFFE1E214EDB2E002769D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		93FFFE23214EDB2E002769D8 /* BenjiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BenjiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		93FFFE28214EDB2E002769D8 /* BenjiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenjiTests.swift; sourceTree = "<group>"; };
-		93FFFE2A214EDB2E002769D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52F996452387437100630110 /* Benji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Benji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F996482387437100630110 /* Benji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Benji.h; sourceTree = "<group>"; };
+		52F996492387437100630110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52F9964E2387437100630110 /* BenjiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BenjiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F996532387437100630110 /* BenjiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenjiTests.swift; sourceTree = "<group>"; };
+		52F996552387437100630110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52F99661238744F100630110 /* Benji.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Benji.podspec; sourceTree = "<group>"; };
+		52F996632387464B00630110 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		52F996652387472B00630110 /* Benji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Benji.swift; sourceTree = "<group>"; };
+		52F996672387475100630110 /* BenjiRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenjiRequestFactory.swift; sourceTree = "<group>"; };
+		52F996692387478400630110 /* BenjiUploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenjiUploadManager.swift; sourceTree = "<group>"; };
+		52F9966B238747A100630110 /* BenjiSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenjiSession.swift; sourceTree = "<group>"; };
+		52F9966D238747B900630110 /* BenjiParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenjiParser.swift; sourceTree = "<group>"; };
+		52F9966F238747D900630110 /* BenjiDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenjiDownloadManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		93FFFE16214EDB2E002769D8 /* Frameworks */ = {
+		52F996422387437100630110 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		93FFFE20214EDB2E002769D8 /* Frameworks */ = {
+		52F9964B2387437100630110 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93FFFE24214EDB2E002769D8 /* Benji.framework in Frameworks */,
+				52F9964F2387437100630110 /* Benji.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		93FFFE10214EDB2E002769D8 = {
+		52F9963B2387437100630110 = {
 			isa = PBXGroup;
 			children = (
-				93FFFE1C214EDB2E002769D8 /* Benji */,
-				93FFFE27214EDB2E002769D8 /* BenjiTests */,
-				93FFFE1B214EDB2E002769D8 /* Products */,
+				52F99661238744F100630110 /* Benji.podspec */,
+				52F996632387464B00630110 /* LICENSE */,
+				52F996472387437100630110 /* Benji */,
+				52F996522387437100630110 /* BenjiTests */,
+				52F996462387437100630110 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		93FFFE1B214EDB2E002769D8 /* Products */ = {
+		52F996462387437100630110 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				93FFFE1A214EDB2E002769D8 /* Benji.framework */,
-				93FFFE23214EDB2E002769D8 /* BenjiTests.xctest */,
+				52F996452387437100630110 /* Benji.framework */,
+				52F9964E2387437100630110 /* BenjiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		93FFFE1C214EDB2E002769D8 /* Benji */ = {
+		52F996472387437100630110 /* Benji */ = {
 			isa = PBXGroup;
 			children = (
-				93FFFE1D214EDB2E002769D8 /* Benji.h */,
-				935F823F2172CC6500640FDF /* Benji.swift */,
-				935F82402172CC6500640FDF /* Parser.swift */,
-				935F82452172E6B300640FDF /* SessionCaller.swift */,
-				93FFFE1E214EDB2E002769D8 /* Info.plist */,
+				52F996482387437100630110 /* Benji.h */,
+				52F996652387472B00630110 /* Benji.swift */,
+				52F996672387475100630110 /* BenjiRequestFactory.swift */,
+				52F996692387478400630110 /* BenjiUploadManager.swift */,
+				52F9966B238747A100630110 /* BenjiSession.swift */,
+				52F9966D238747B900630110 /* BenjiParser.swift */,
+				52F9966F238747D900630110 /* BenjiDownloadManager.swift */,
+				52F996492387437100630110 /* Info.plist */,
 			);
 			path = Benji;
 			sourceTree = "<group>";
 		};
-		93FFFE27214EDB2E002769D8 /* BenjiTests */ = {
+		52F996522387437100630110 /* BenjiTests */ = {
 			isa = PBXGroup;
 			children = (
-				93FFFE28214EDB2E002769D8 /* BenjiTests.swift */,
-				93FFFE2A214EDB2E002769D8 /* Info.plist */,
+				52F996532387437100630110 /* BenjiTests.swift */,
+				52F996552387437100630110 /* Info.plist */,
 			);
 			path = BenjiTests;
 			sourceTree = "<group>";
@@ -98,25 +127,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		93FFFE17214EDB2E002769D8 /* Headers */ = {
+		52F996402387437100630110 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93FFFE2B214EDB2E002769D8 /* Benji.h in Headers */,
+				52F996562387437100630110 /* Benji.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		93FFFE19214EDB2E002769D8 /* Benji */ = {
+		52F996442387437100630110 /* Benji */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 93FFFE2E214EDB2E002769D8 /* Build configuration list for PBXNativeTarget "Benji" */;
+			buildConfigurationList = 52F996592387437100630110 /* Build configuration list for PBXNativeTarget "Benji" */;
 			buildPhases = (
-				93FFFE15214EDB2E002769D8 /* Sources */,
-				93FFFE16214EDB2E002769D8 /* Frameworks */,
-				93FFFE17214EDB2E002769D8 /* Headers */,
-				93FFFE18214EDB2E002769D8 /* Resources */,
+				52F996402387437100630110 /* Headers */,
+				52F996412387437100630110 /* Sources */,
+				52F996422387437100630110 /* Frameworks */,
+				52F996432387437100630110 /* Resources */,
+				52F996BB238756D400630110 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -124,74 +154,80 @@
 			);
 			name = Benji;
 			productName = Benji;
-			productReference = 93FFFE1A214EDB2E002769D8 /* Benji.framework */;
+			productReference = 52F996452387437100630110 /* Benji.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		93FFFE22214EDB2E002769D8 /* BenjiTests */ = {
+		52F9964D2387437100630110 /* BenjiTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 93FFFE31214EDB2E002769D8 /* Build configuration list for PBXNativeTarget "BenjiTests" */;
+			buildConfigurationList = 52F9965C2387437100630110 /* Build configuration list for PBXNativeTarget "BenjiTests" */;
 			buildPhases = (
-				93FFFE1F214EDB2E002769D8 /* Sources */,
-				93FFFE20214EDB2E002769D8 /* Frameworks */,
-				93FFFE21214EDB2E002769D8 /* Resources */,
+				52F9964A2387437100630110 /* Sources */,
+				52F9964B2387437100630110 /* Frameworks */,
+				52F9964C2387437100630110 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				93FFFE26214EDB2E002769D8 /* PBXTargetDependency */,
+				52F996512387437100630110 /* PBXTargetDependency */,
 			);
 			name = BenjiTests;
 			productName = BenjiTests;
-			productReference = 93FFFE23214EDB2E002769D8 /* BenjiTests.xctest */;
+			productReference = 52F9964E2387437100630110 /* BenjiTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		93FFFE11214EDB2E002769D8 /* Project object */ = {
+		52F9963C2387437100630110 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = kinactiv;
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "Aaron Wong";
 				TargetAttributes = {
-					93FFFE19214EDB2E002769D8 = {
-						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+					52F996442387437100630110 = {
+						CreatedOnToolsVersion = 11.2;
+						LastSwiftMigration = 1120;
 					};
-					93FFFE22214EDB2E002769D8 = {
-						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+					52F9964D2387437100630110 = {
+						CreatedOnToolsVersion = 11.2;
+					};
+					52F996B62387556600630110 = {
+						CreatedOnToolsVersion = 11.2;
 					};
 				};
 			};
-			buildConfigurationList = 93FFFE14214EDB2E002769D8 /* Build configuration list for PBXProject "Benji" */;
+			buildConfigurationList = 52F9963F2387437100630110 /* Build configuration list for PBXProject "Benji" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
-			mainGroup = 93FFFE10214EDB2E002769D8;
-			productRefGroup = 93FFFE1B214EDB2E002769D8 /* Products */;
+			mainGroup = 52F9963B2387437100630110;
+			productRefGroup = 52F996462387437100630110 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				93FFFE19214EDB2E002769D8 /* Benji */,
-				93FFFE22214EDB2E002769D8 /* BenjiTests */,
+				52F996442387437100630110 /* Benji */,
+				52F9964D2387437100630110 /* BenjiTests */,
+				52F996B62387556600630110 /* Benji-Universal */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		93FFFE18214EDB2E002769D8 /* Resources */ = {
+		52F996432387437100630110 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F996642387464B00630110 /* LICENSE in Resources */,
+				52F99662238744F100630110 /* Benji.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		93FFFE21214EDB2E002769D8 /* Resources */ = {
+		52F9964C2387437100630110 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -200,37 +236,77 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		52F996BA2387557B00630110 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "UNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n \n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n \n# Step 1. Build Device and Simulator versions\nxcodebuild -target \"${PROJECT_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nxcodebuild -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n \n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n \n# Step 3. Copy Swift modules from iphonesimulator build (if it exists) to the copied framework directory\nSIMULATOR_SWIFT_MODULES_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule/.\"\nif [ -d \"${SIMULATOR_SWIFT_MODULES_DIR}\" ]; then\ncp -R \"${SIMULATOR_SWIFT_MODULES_DIR}\" \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule\"\nfi\n \n# Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n \n# Step 5. Convenience step to copy the framework to the project's directory\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework\" \"${PROJECT_DIR}\"\n \n# Step 6. Convenience step to open the project's directory in Finder\nopen \"${PROJECT_DIR}\"\n";
+		};
+		52F996BB238756D400630110 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/${PROJECT_NAME}.framework/ios-framework-build.sh\" Benji\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		93FFFE15214EDB2E002769D8 /* Sources */ = {
+		52F996412387437100630110 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				935F82462172E6B300640FDF /* SessionCaller.swift in Sources */,
-				935F82422172CC6500640FDF /* Parser.swift in Sources */,
-				935F82412172CC6500640FDF /* Benji.swift in Sources */,
+				52F99670238747D900630110 /* BenjiDownloadManager.swift in Sources */,
+				52F996662387472B00630110 /* Benji.swift in Sources */,
+				52F9966E238747B900630110 /* BenjiParser.swift in Sources */,
+				52F9966C238747A100630110 /* BenjiSession.swift in Sources */,
+				52F996682387475100630110 /* BenjiRequestFactory.swift in Sources */,
+				52F9966A2387478400630110 /* BenjiUploadManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		93FFFE1F214EDB2E002769D8 /* Sources */ = {
+		52F9964A2387437100630110 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93FFFE29214EDB2E002769D8 /* BenjiTests.swift in Sources */,
+				52F996542387437100630110 /* BenjiTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		93FFFE26214EDB2E002769D8 /* PBXTargetDependency */ = {
+		52F996512387437100630110 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 93FFFE19214EDB2E002769D8 /* Benji */;
-			targetProxy = 93FFFE25214EDB2E002769D8 /* PBXContainerItemProxy */;
+			target = 52F996442387437100630110 /* Benji */;
+			targetProxy = 52F996502387437100630110 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		93FFFE2C214EDB2E002769D8 /* Debug */ = {
+		52F996572387437100630110 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -262,7 +338,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -282,8 +357,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -293,7 +369,7 @@
 			};
 			name = Debug;
 		};
-		93FFFE2D214EDB2E002769D8 /* Release */ = {
+		52F996582387437100630110 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -325,7 +401,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -339,8 +414,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -350,128 +426,151 @@
 			};
 			name = Release;
 		};
-		93FFFE2F214EDB2E002769D8 /* Debug */ = {
+		52F9965A2387437100630110 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Z2HJBZK537;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Benji/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "aa-wong.Benji";
+				PRODUCT_BUNDLE_IDENTIFIER = pixelbirddesign.Benji;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		93FFFE30214EDB2E002769D8 /* Release */ = {
+		52F9965B2387437100630110 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Z2HJBZK537;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Benji/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "aa-wong.Benji";
+				PRODUCT_BUNDLE_IDENTIFIER = pixelbirddesign.Benji;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		93FFFE32214EDB2E002769D8 /* Debug */ = {
+		52F9965D2387437100630110 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z2HJBZK537;
 				INFOPLIST_FILE = BenjiTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kinactiv.BenjiTests;
+				PRODUCT_BUNDLE_IDENTIFIER = pixelbirddesign.BenjiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		93FFFE33214EDB2E002769D8 /* Release */ = {
+		52F9965E2387437100630110 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z2HJBZK537;
 				INFOPLIST_FILE = BenjiTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kinactiv.BenjiTests;
+				PRODUCT_BUNDLE_IDENTIFIER = pixelbirddesign.BenjiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		52F996B82387556600630110 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z2HJBZK537;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		52F996B92387556600630110 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z2HJBZK537;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		93FFFE14214EDB2E002769D8 /* Build configuration list for PBXProject "Benji" */ = {
+		52F9963F2387437100630110 /* Build configuration list for PBXProject "Benji" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				93FFFE2C214EDB2E002769D8 /* Debug */,
-				93FFFE2D214EDB2E002769D8 /* Release */,
+				52F996572387437100630110 /* Debug */,
+				52F996582387437100630110 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		93FFFE2E214EDB2E002769D8 /* Build configuration list for PBXNativeTarget "Benji" */ = {
+		52F996592387437100630110 /* Build configuration list for PBXNativeTarget "Benji" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				93FFFE2F214EDB2E002769D8 /* Debug */,
-				93FFFE30214EDB2E002769D8 /* Release */,
+				52F9965A2387437100630110 /* Debug */,
+				52F9965B2387437100630110 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		93FFFE31214EDB2E002769D8 /* Build configuration list for PBXNativeTarget "BenjiTests" */ = {
+		52F9965C2387437100630110 /* Build configuration list for PBXNativeTarget "BenjiTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				93FFFE32214EDB2E002769D8 /* Debug */,
-				93FFFE33214EDB2E002769D8 /* Release */,
+				52F9965D2387437100630110 /* Debug */,
+				52F9965E2387437100630110 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52F996B72387556600630110 /* Build configuration list for PBXAggregateTarget "Benji-Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52F996B82387556600630110 /* Debug */,
+				52F996B92387556600630110 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 93FFFE11214EDB2E002769D8 /* Project object */;
+	rootObject = 52F9963C2387437100630110 /* Project object */;
 }

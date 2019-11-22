@@ -2,11 +2,11 @@
 //  Benji.h
 //  Benji
 //
-//  Created by Aaron Wong-Ellis on 2018-09-16.
-//  Copyright © 2018 kinactiv. All rights reserved.
+//  Created by Aaron Wong on 2019-11-21.
+//  Copyright © 2019 Aaron Wong. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for Benji.
 FOUNDATION_EXPORT double BenjiVersionNumber;
