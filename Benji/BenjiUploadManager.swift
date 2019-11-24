@@ -11,7 +11,7 @@ import MobileCoreServices
 
 @objc public protocol BenjiUploadDelegate: BenjiFetchDelegate {
     @objc optional func benjiDidGetUploadProgress(_ progress:Float, percentage:Int)
-    @objc optional func benjiUploadComplete(_ location: URL)
+    @objc optional func benjiUploadComplete()
 }
 
 class BenjiUploadManager: NSObject {
@@ -100,8 +100,8 @@ extension BenjiUploadManager: URLSessionDelegate, URLSessionTaskDelegate, URLSes
             let percentage : Int = Int(progress * 100)
             self.delegate?.benjiDidGetUploadProgress?(progress, percentage: percentage)
             
-            if percentage === 100 {
-                self.delegate?.benjiUploadComplete?(<#T##location: URL##URL#>)
+            if percentage == 100 {
+                self.delegate?.benjiUploadComplete?()
             }
         }
     }
