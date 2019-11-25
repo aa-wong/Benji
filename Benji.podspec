@@ -11,5 +11,6 @@ Pod::Spec.new do |spec|
   spec.source = { git: "https://github.com/aa-wong/Benji.git", tag: "v#{spec.version}"}
   spec.source_files = "Benji/**/*.{h, swift}"
   spec.swift_version = '5.0'
+  spec.vendored_frameworks = 'Benji.framework'
 
 end
