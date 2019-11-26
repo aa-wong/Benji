@@ -20,10 +20,6 @@ class BenjiDownloadManager : NSObject, URLSessionDownloadDelegate {
     var session : URLSession {
         get {
             return URLSession(configuration: .default)
-//            let config = URLSessionConfiguration.background(withIdentifier: "\(Bundle.main.bundleIdentifier!).background")
-//            return URLSession(configuration: config,
-//                              delegate: self,
-//                              delegateQueue: OperationQueue())
         }
     }
     
