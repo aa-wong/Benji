@@ -32,7 +32,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-pod 'Benji', '~> 1.0'
+pod 'Benji'
 end
 ```
 
