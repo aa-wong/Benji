@@ -37,10 +37,10 @@ class BenjiSession: NSObject, URLSessionDelegate {
         
         // Apply header for JSON request
         var mutableHeaders = headers
-        if hearder["Content-Type"] == nil { mutableHeaders["Content-Type"] = "application/json" }
+        if headers["Content-Type"] == nil { mutableHeaders["Content-Type"] = "application/json" }
         
         // Create request object with url, type and headers
-        if let request = self.requestFactory.createRequestObject(url: url,
+        if var request = self.requestFactory.createRequestObject(url: url,
                                                                  type: type,
                                                                  headers: headers) {
             self.passLogToDelegate(method: type.string(), url: url, headers: mutableHeaders)
