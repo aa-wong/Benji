@@ -11,7 +11,7 @@ import Foundation
 public enum BenjiRequestType {
     case GET
     case POST
-    case PUT
+    case PUT 
     case PATCH
     case DELETE
     

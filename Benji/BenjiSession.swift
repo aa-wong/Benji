@@ -37,7 +37,7 @@ class BenjiSession: NSObject, URLSessionDelegate {
         
         // Apply header for JSON request
         var mutableHeaders = headers
-        mutableHeaders["Content-Type"] = "application/json"
+        if hearder["Content-Type"] == nil { mutableHeaders["Content-Type"] = "application/json" }
         
         // Create request object with url, type and headers
         if let request = self.requestFactory.createRequestObject(url: url,
@@ -47,15 +47,39 @@ class BenjiSession: NSObject, URLSessionDelegate {
             
             // If body exists, parse into JSON
             if let body = body {
-                BenjiParser.dataFromObject(object: body) { (error, responseData) in
-                    // Return if error exists
-                    if let error = error {
+                // Parsing to x-www-form-urlencoded
+                if mutableHeaders["Content-Type"] == "application/x-www-form-urlencoded" {
+                    if let body = body as? [AnyHashable : String] {
+                        var postData = ""
+                        body.forEach { (key, val) in
+                            if (postData != "") { postData += "&" }
+                            postData += "\(key)=\(val)"
+                        }
+                        request.httpBody = postData.data(using: String.Encoding.utf8)
+                        return self.httpSession(url: url,
+                                                request: request,
+                                                completion: completion)
+                    } else {
+                        // Create error response when URLRequest object cannot be created
+                        let error : Error = NSError(domain: "Invalid body data",
+                                                    code: 412,
+                                                    userInfo: ["more_info" : "application/x-www-form-urlencoded requires key-values as string"])
                         self.delegate?.benjiDidGetError?(error)
                         return completion(error, nil, nil)
                     }
-                    return self.httpSession(url: url,
-                                            request: request,
-                                            completion: completion)
+                // Parsing JSON
+                } else {
+                    BenjiParser.dataFromObject(object: body) { (error, responseData) in
+                        // Return if error exists
+                        if let error = error {
+                            self.delegate?.benjiDidGetError?(error)
+                            return completion(error, nil, nil)
+                        }
+                        return self.httpSession(url: url,
+                                                request: request,
+                                                completion: completion)
+                    }
+
                 }
             } else {
                 // Execute Session without body
