@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "Benji"
-  spec.version = "1.2.0"
+  spec.version = "1.2.1"
   spec.summary = "Benji is a lightweight HTTP networking library written in Swift for simple HTTP API requests using JSON and uploading/downloading files."
   spec.homepage = "https://github.com/aa-wong/Benji"
   spec.license = { type: 'MIT', file: 'LICENSE' }

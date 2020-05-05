@@ -1,0 +1,61 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.2.2 (swiftlang-1103.0.32.6 clang-1103.0.32.51)
+// swift-module-flags: -target x86_64-apple-ios8.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name Benji
+@_exported import Benji
+import Foundation
+import MobileCoreServices
+import Swift
+import UIKit
+@objc public protocol BenjiDownloadDelegate : Benji.BenjiFetchDelegate {
+  @objc optional func benjiDidGetDownloadProgress(_ progress: Swift.Float, percentage: Swift.Int)
+  @objc optional func benjiDownloadComplete(_ location: Foundation.URL)
+}
+public enum BenjiRequestType {
+  case GET
+  case POST
+  case PUT
+  case PATCH
+  case DELETE
+  public static func == (a: Benji.BenjiRequestType, b: Benji.BenjiRequestType) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+@objc @_inheritsConvenienceInitializers public class Benji : ObjectiveC.NSObject {
+  public class var shared: Benji.Benji {
+    get
+  }
+  public static func destroy()
+  public var baseURL: Swift.String?
+  public var baseHeaders: [Swift.String : Swift.String]?
+  public var fetchDelegate: Benji.BenjiFetchDelegate?
+  public var uploadDelegate: Benji.BenjiUploadDelegate?
+  public var downloadDelegate: Benji.BenjiDownloadDelegate?
+  public func GET(_ url: Swift.String, headers: [Swift.String : Swift.String]?, completion: @escaping (Swift.Error?, Foundation.HTTPURLResponse?, Any?) -> Swift.Void)
+  public func POST(_ url: Swift.String, headers: [Swift.String : Swift.String]?, body: Any, completion: @escaping (Swift.Error?, Foundation.HTTPURLResponse?, Any?) -> Swift.Void)
+  public func PUT(_ url: Swift.String, headers: [Swift.String : Swift.String]?, body: Any, completion: @escaping (Swift.Error?, Foundation.HTTPURLResponse?, Any?) -> Swift.Void)
+  public func PATCH(_ url: Swift.String, headers: [Swift.String : Swift.String]?, body: Any, completion: @escaping (Swift.Error?, Foundation.HTTPURLResponse?, Any?) -> Swift.Void)
+  public func DELETE(_ url: Swift.String, headers: [Swift.String : Swift.String]?, completion: @escaping (Swift.Error?, Foundation.HTTPURLResponse?, Any?) -> Swift.Void)
+  public func FETCH(_ type: Benji.BenjiRequestType, url: Swift.String, headers: [Swift.String : Swift.String]?, body: Any?, completion: @escaping (Swift.Error?, Foundation.HTTPURLResponse?, Any?) -> Swift.Void)
+  public func DOWNLOAD(_ url: Swift.String, headers: [Swift.String : Swift.String]?, completion: @escaping (Swift.Error?, Foundation.HTTPURLResponse?, Any?) -> Swift.Void)
+  public func UPLOAD(_ url: Swift.String, type: Benji.BenjiRequestType, headers: [Swift.String : Swift.String]?, body: [Swift.String : Any]?, fileName: Swift.String, filePath: Swift.String, completion: @escaping (Swift.Error?, Foundation.HTTPURLResponse?, Any?) -> Swift.Void)
+  public static func syncFileDownload(_ url: Swift.String) -> Foundation.Data?
+  public static func asyncFileDownload(_ url: Swift.String, completion: @escaping (Swift.Error?, Foundation.Data?) -> Swift.Void)
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc @_inheritsConvenienceInitializers public class BenjiParser : ObjectiveC.NSObject {
+  public static func dataFromObject(object: Any, completion: (Swift.Error?, Foundation.Data?) -> Swift.Void)
+  public static func objectFromData(data: Foundation.Data, completion: (Swift.Error?, Any?) -> Swift.Void)
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc public protocol BenjiFetchDelegate {
+  @objc optional func benjiDidGetError(_ error: Swift.Error)
+  @objc optional func benjiLogRequest(_ log: [Swift.String : Any])
+}
+@objc public protocol BenjiUploadDelegate : Benji.BenjiFetchDelegate {
+  @objc optional func benjiDidGetUploadProgress(_ progress: Swift.Float, percentage: Swift.Int)
+  @objc optional func benjiUploadComplete()
+}
